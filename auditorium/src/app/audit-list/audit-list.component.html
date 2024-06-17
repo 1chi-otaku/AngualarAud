@@ -1,0 +1,25 @@
+<div class="container">
+    <div class="controls">
+      <button class="button" (click)="showAllAudiences()">Show all Audiences</button>
+      <button class="button" (click)="sortByCapacity()">Sort by Capacity</button>
+      <button class="button" (click)="sortByName()">Sort by Name</button>
+    </div>
+    
+    <div class="filters">
+      <select class="select" [(ngModel)]="selectedFaculty" (change)="filterByFaculty(selectedFaculty)">
+        <option value="">All</option>
+        <option *ngFor="let faculty of faculties">{{ faculty }}</option>
+      </select>
+  
+      <select class="select" [(ngModel)]="selectedGroup" (change)="filterForGroup(selectedGroup)">
+        <option *ngFor="let group of groups" [ngValue]="group">{{ group.name }}</option>
+      </select>
+    </div>
+  
+    <div class="auditoriums">
+      <div *ngFor="let audience of filteredAudiences" class="auditorium">
+        <p>{{ audience.name }} - {{ audience.capacity }} capacity - {{ audience.faculty }}</p>
+      </div>
+    </div>
+  </div>
+  
